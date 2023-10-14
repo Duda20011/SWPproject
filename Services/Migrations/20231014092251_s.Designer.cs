@@ -12,8 +12,8 @@ using Services;
 namespace Services.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20231011080628_swp")]
-    partial class swp
+    [Migration("20231014092251_s")]
+    partial class s
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,9 +40,6 @@ namespace Services.Migrations
                     b.Property<string>("CourseName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");

@@ -1,6 +1,7 @@
 ﻿
 
 using Services.Repository;
+using Services.Repository.Interface;
 
 namespace Services
 {
@@ -8,6 +9,7 @@ namespace Services
     {
         public Task<int> SaveChangeAsync();
         public IUserRepo userRepo { get; }
+        public ICourseRepo courseRepo { get; }
 
     }
 }

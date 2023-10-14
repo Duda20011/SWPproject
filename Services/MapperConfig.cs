@@ -12,6 +12,7 @@ namespace Services
             CreateMap<User, UserModel>().ReverseMap();
             CreateMap<User, LoginModel>().ReverseMap();
             CreateMap(typeof(Pagination<>), typeof(Pagination<>));
+            CreateMap<Course, CourseModel>().ReverseMap();
         }
     }
 }

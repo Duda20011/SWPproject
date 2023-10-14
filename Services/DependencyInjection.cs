@@ -11,7 +11,7 @@ namespace Services
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ICurrentTimeService, CurrentTimeService>();
             services.AddScoped<IUserServices, UserService>();
-
+            services.AddScoped<ICourseServices, CourseServices>();
             return services;
         }
     }

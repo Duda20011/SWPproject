@@ -8,7 +8,7 @@ namespace Services.Entity
         public string CourseDescription { get; set; }
         public decimal Price { get; set; }
         public Status Status { get; set; }
-        public DateTime CreateDate { get; set; }
+        
         public User User { get; set; }
         public int UserId { get; set; }
         public ICollection<OrderDetail>? OrderDetails { get; set; }

@@ -2,6 +2,7 @@
 using Services.Service;
 using Services.Repository;
 using System;
+using Services.Repository.Interface;
 
 namespace Services
 {
@@ -19,6 +20,7 @@ namespace Services
             _claimsServices = claimsServices;
         }
         public IUserRepo userRepo => new UserRepo(_context, _currentTimeService, _claimsServices);
+        public ICourseRepo courseRepo => new CourseRepo(_context, _currentTimeService, _claimsServices);
         public Task<int> SaveChangeAsync()
         {
             return _context.SaveChangesAsync();
