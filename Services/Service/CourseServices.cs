@@ -55,6 +55,21 @@ namespace Services.Service
 
         }
 
+        public async Task<ResponseModel<Pagination<CourseModel>>> GetCourseByName(string coursename, int pageIndex = 1, int pageSize = 10)
+        {
+            var courseObj = await _unitOfWork.courseRepo.GetCourseDetailByName(coursename, pageIndex, pageSize);
+            var result = _mapper.Map<Pagination<CourseModel>>(courseObj);
+
+            if (courseObj.Items.Count() < 1)
+            {
+                return new ResponseModel<Pagination<CourseModel>> { Errors = "Not found" };
+            }
+
+            return new ResponseModel<Pagination<CourseModel>> { Data = result };
+        }
+
+        
+
         public async Task<ResponseModel<string>> RemoveCourse(int id)
         {
             var courseObj = await _unitOfWork.courseRepo.GetEntityByIdAsync(id);

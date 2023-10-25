@@ -7,6 +7,8 @@ namespace Services.Repository.Interface
     {
         Task<Pagination<Course>> GetAllCourseDetail(int pageIndex = 1, int pageSize = 10);
         Task<Pagination<Course>> GetCourseDetailById(int id, int pageIndex = 1, int pageSize = 10);
+        Task<Pagination<Course>> GetCourseDetailByName(string coursename, int pageIndex = 1, int pageSize = 10);
+
 
     }
 }

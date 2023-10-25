@@ -64,5 +64,35 @@ namespace Services.Repository
 
             return result;
         }
+
+        public async Task<Pagination<Course>> GetCourseDetailByName(string coursename, int pageIndex = 1, int pageSize = 10)
+        {
+            var query = _context.Courses
+                .Where(course => course.CourseName.Contains(coursename));
+
+            var itemCount = await query.CountAsync();
+
+            if (pageIndex < 1)
+            {
+                pageIndex = 1;
+            }
+
+            var courses = await query
+                .Skip((pageIndex - 1) * pageSize)
+                .Take(pageSize)
+                .AsNoTracking()
+                .ToListAsync();
+
+            var result = new Pagination<Course>
+            {
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                TotalItemCount = itemCount,
+                Items = courses
+            };
+
+            return result;
+        }
+
     }
 }

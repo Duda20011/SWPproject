@@ -35,6 +35,12 @@ namespace Project.SWP.Controllers
             var result = await _courseServices.GetCourseById(id, pageIndex, pageSize);
             return Ok(result);
         }
+        [HttpGet("{coursename}")]
+        public async Task<IActionResult> GetCourByName(string coursename, int pageIndex = 1, int pageSize = 10)
+        {
+            var result = await _courseServices.GetCourseByName(coursename, pageIndex, pageSize);
+            return Ok(result);
+        }
         [HttpPut]
         public async Task<IActionResult> Update([FromQuery] int id, [FromBody] CourseModel courseModel)
         {
