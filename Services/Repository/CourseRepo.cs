@@ -90,9 +90,7 @@ namespace Services.Repository
                 TotalItemCount = itemCount,
                 Items = courses
             };
-
             return result;
         }
-
     }
 }
