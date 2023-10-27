@@ -12,6 +12,8 @@ namespace Services
             services.AddScoped<ICurrentTimeService, CurrentTimeService>();
             services.AddScoped<IUserServices, UserService>();
             services.AddScoped<ICourseServices, CourseServices>();
+            services.AddScoped<IPostServices, PostService>();
+
             return services;
         }
     }

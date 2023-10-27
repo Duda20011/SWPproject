@@ -9,28 +9,42 @@ namespace Services.Service
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public CourseServices(IUnitOfWork unitOfWork, IMapper mapper)
+        private readonly IClaimsServices _claimsServices;
+        public CourseServices(IUnitOfWork unitOfWork, IMapper mapper, IClaimsServices claimsServices)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _claimsServices = claimsServices;
         }
 
-        public async Task<ResponseModel<string>> CreateCourse(CourseModel courseModel)
+        public async Task<ResponseModel<CourseResponse>> CreateCourse(CourseModel course)
         {
 
-            var courseObj = _mapper.Map<Course>(courseModel);
+            var user = _claimsServices.GetCurrentUser();
+            if (user is null)
+            {
+                return new ResponseModel<CourseResponse>
+                {
+                    Errors = "User not logged in."
+                };
+            }
+            var courseObj = _mapper.Map<Course>(course);
+            courseObj.UserId = int.Parse(user);
+            courseObj.Status = Enum.Status.Disable;
             await _unitOfWork.courseRepo.CreateAsync(courseObj);
             var isSuccess = await _unitOfWork.SaveChangeAsync();
-
             if (isSuccess > 0)
             {
-                return new ResponseModel<string> { Data = "Success" };
+                var result = _mapper.Map<CourseResponse>(courseObj);
+               
+                return new ResponseModel<CourseResponse>
+                {
+                    Data = result
+                };
             }
-            else
-            {
-                return new ResponseModel<string> { Errors = "Fail!" };
-            }
+            return new ResponseModel<CourseResponse> { Errors = "Create Course failed." };
         }
+    
 
         public async Task<ResponseModel<Pagination<CourseModel>>> GetAllCourse(int pageIndex = 1, int pageSize = 10)
         {

@@ -16,7 +16,7 @@ namespace Project.SWP.Controllers
         {
             _courseServices = services;
         }
-        [Authorize(Policy = IdentityData.Intructors)]
+        
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CourseModel courseModel)
         {

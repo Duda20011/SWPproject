@@ -21,6 +21,8 @@ namespace Services
         }
         public IUserRepo userRepo => new UserRepo(_context, _currentTimeService, _claimsServices);
         public ICourseRepo courseRepo => new CourseRepo(_context, _currentTimeService, _claimsServices);
+        public IPostRepo postRepo => new PostRepo(_context, _currentTimeService, _claimsServices);
+
         public Task<int> SaveChangeAsync()
         {
             return _context.SaveChangesAsync();

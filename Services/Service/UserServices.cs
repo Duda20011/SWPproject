@@ -39,6 +39,15 @@ namespace Services.Service
             }
             return new ResponseModel<string> { Errors = "Fail to create user." };
         }
+
+        public async Task<ResponseModel<Pagination<UserModel>>> GetUsers(int pageIndex = 0, int pageSize = 10)
+        {
+            var listUser = await _unitOfWork.userRepo.ToPagination(pageIndex: pageIndex, pageSize: pageSize);
+            var result = _mapper.Map<Pagination<UserModel>>(listUser);
+            if (listUser is null) return new ResponseModel<Pagination<UserModel>> { Errors = "List is empty"! };
+            return new ResponseModel<Pagination<UserModel>> { Data = result };
+        }
+
         public async Task<ResponseModel<string>> Login(LoginModel loginModel)
         {
             var response = new ResponseModel<string>();
@@ -53,5 +62,49 @@ namespace Services.Service
             return response;
         }
 
+        public async Task<ResponseModel<string>> RemoveUser(int id)
+        {
+            var response = new ResponseModel<string>();
+            var user = await _unitOfWork.userRepo.GetEntityByIdAsync(id);
+            if (user == null || user.IsDeleted)
+            {
+                response.Errors = "User not exsits or has been banned.";
+                return response;
+            }
+            _unitOfWork.userRepo.DeleteAsync(user);
+            var result = await _unitOfWork.SaveChangeAsync();
+            response.Data = result.ToString();
+            return response;
+        }
+
+        public async Task<ResponseModel<string>> UpdateUser(int id, UserModel loginModel)
+        {
+            var currentUser = _claimsServices.GetCurrentUser();
+            if (currentUser == null || currentUser != id.ToString() || id < 0)
+            {
+                return new ResponseModel<string>
+                {
+                    Errors = "User not login yet."
+                };
+            }
+            var user = await _unitOfWork.userRepo.GetEntityByIdAsync(id);
+            if (user == null || user.IsDeleted)
+            {
+                return new ResponseModel<string>
+                {
+                    Errors = "User not exsits or has been banned."
+                };
+            }
+            user.Address = loginModel.Address;
+            user.Email = loginModel.Email;
+            user.Password = loginModel.Password;
+            user.Phone = loginModel.Phone;
+            _unitOfWork.userRepo.UpdateAsync(user);
+            var result = await _unitOfWork.SaveChangeAsync();
+            return new ResponseModel<string>
+            {
+                Data = result.ToString(),
+            };
+        }
     }
 }
