@@ -5,4 +5,10 @@
         Disable,
         Enable
     }
+    public enum OrderStatus
+    {
+        Pending,
+        Success,
+        Fail
+    }
 }
