@@ -12,8 +12,15 @@ builder.Services.BuildServices(builder.Configuration);
 builder.Services.CoreServices();
 
 // add cors
-builder.Services.AddCors();
-// add authen policy
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("http://localhost:3000")
+        .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});// add authen policy
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options => builder.Configuration.Bind("JWTSection", options));
 

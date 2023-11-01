@@ -15,7 +15,7 @@ namespace Project.SWP.Controllers
             _services = services;
         }
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] LoginModel model)
+        public async Task<IActionResult> Login(LoginModel model)
         {
             var result = await _services.Login(model);
             return Ok(result);
