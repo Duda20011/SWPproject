@@ -9,7 +9,6 @@ namespace Services.Model
         public string CourseName { get; set; }
         public string CourseDescription { get; set; }
         public decimal Price { get; set; }
-        
     }
     public class CourseResponse
     {

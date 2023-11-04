@@ -45,7 +45,7 @@ namespace Services.Repository
                 pageIndex = 1;
             }
 
-            var totalCourseCount = await _dbSet.CountAsync(x => x.Id == id);
+            var totalPostCount = await _dbSet.CountAsync(x => x.Id == id);
 
             var post = await _dbSet
                 .Where(x => x.Id == id)
@@ -57,7 +57,7 @@ namespace Services.Repository
             {
                 PageIndex = pageIndex,
                 PageSize = pageSize,
-                TotalItemCount = totalCourseCount,
+                TotalItemCount = totalPostCount,
                 Items = post
             };
 

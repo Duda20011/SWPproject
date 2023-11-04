@@ -13,6 +13,7 @@ namespace Services
             services.AddScoped<IUserServices, UserService>();
             services.AddScoped<ICourseServices, CourseServices>();
             services.AddScoped<IPostServices, PostService>();
+            services.AddScoped<IMaterialServices, MaterialService>();
 
             return services;
         }

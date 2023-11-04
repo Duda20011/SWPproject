@@ -16,6 +16,8 @@ namespace Services
             CreateMap<Course, CourseResponse>().ReverseMap();
             CreateMap<Post, PostModel>().ReverseMap();
             CreateMap<Post, PostResponse>().ReverseMap();
+            CreateMap<Material, MaterialModel>().ReverseMap();
+            CreateMap<Material, MaterialResponse>().ReverseMap();
 
         }
     }
