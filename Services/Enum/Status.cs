@@ -2,12 +2,17 @@
 {
     public enum Status
     {
-        Disable,
-        Enable
+        Disactive,
+        Active
     }
     public enum OrderStatus
     {
         Pending,
+        Success,
+        Fail
+    }
+    public enum PaymentStatus
+    {
         Success,
         Fail
     }
