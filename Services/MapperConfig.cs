@@ -14,10 +14,6 @@ namespace Services
             CreateMap(typeof(Pagination<>), typeof(Pagination<>));
             CreateMap<Course, CourseModel>().ReverseMap();
             CreateMap<Course, CourseResponse>().ReverseMap();
-            CreateMap<Post, PostModel>().ReverseMap();
-            CreateMap<Post, PostResponse>().ReverseMap();
-            CreateMap<Material, MaterialModel>().ReverseMap();
-            CreateMap<Material, MaterialResponse>().ReverseMap();
 
         }
     }

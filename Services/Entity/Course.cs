@@ -11,7 +11,6 @@ namespace Services.Entity
         public User User { get; set; }
         public int UserId { get; set; }
         public ICollection<OrderDetail>? OrderDetails { get; set; }
-        public ICollection<Material>? Materials { get; set; }
         public ICollection<CourseEnroll>? CourseEnrolls { get; set; }
 
     }

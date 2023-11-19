@@ -12,7 +12,6 @@ namespace Services.Entity
         public Role Role { get; set; }
         public ICollection<Course>? Courses { get; set; }
         public ICollection<Order>? Orders { get; set; }
-        public ICollection<Post>? Posts { get; set; }
         public ICollection<CourseEnroll>? CourseEnrolls { get; set; }
     }
 }

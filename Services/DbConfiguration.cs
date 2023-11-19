@@ -55,18 +55,7 @@ namespace Services
 
         }
     }
-    public class MaterialConfig : IEntityTypeConfiguration<Material>
-    {
-        public void Configure(EntityTypeBuilder<Material> builder)
-        {
-            builder.HasKey(x => x.Id);
-
-            builder.HasOne(s => s.Course)
-                .WithMany(s => s.Materials)
-                .HasForeignKey(fk => fk.CourseId);
-
-        }
-    }
+    
     public class OrderConfig : IEntityTypeConfiguration<Order>
     {
         public void Configure(EntityTypeBuilder<Order> builder)
@@ -96,18 +85,7 @@ namespace Services
 
         }
     }
-    public class PostConfig : IEntityTypeConfiguration<Post>
-    {
-        public void Configure(EntityTypeBuilder<Post> builder)
-        {
-            builder.HasKey(x => x.Id);
-
-            builder.HasOne(s => s.User)
-                   .WithMany(s => s.Posts)
-                   .HasForeignKey(fk => fk.UserId)
-                   .OnDelete(DeleteBehavior.Restrict); // Set the delete behavior to restrict
-        }
-    }
+    
     public class UserConfig : IEntityTypeConfiguration<User>
     {
         public void Configure(EntityTypeBuilder<User> builder)
