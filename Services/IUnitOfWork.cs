@@ -9,6 +9,12 @@ namespace Services
     {
         public Task<int> SaveChangeAsync();
         public IUserRepo userRepo { get; }
-        //public ICourseRepo courseRepo { get; }
+        public IWalletRepo walletRepo { get; }
+        public ICategoryRepo categoryRepo { get; }
+        public ICourseRepo courseRepo { get; }
+        public IChapterRepo chapterRepo { get; }
+        public IOrderRepo orderRepo { get; }
+        public IPaymentRepo paymentRepo { get; }
+        public IUserCourseRepo userCourseRepo { get; }
     }
 }

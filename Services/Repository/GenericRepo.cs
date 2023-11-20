@@ -44,14 +44,14 @@ namespace Services.Repository
         {
             entity.ModificationDate = _currentTime.GetCurrentTime();
             var id = _claimsServices.GetCurrentUser();
-            entity.ModificationBy = int.Parse(id);
+            entity.ModificationBy = !string.IsNullOrEmpty(id) ? int.Parse(id) : null;
             _dbSet.Update(entity);
         }
         public void DeleteAsync(T entity)
         {
             entity.DeletionDate = _currentTime.GetCurrentTime();
             var id = _claimsServices.GetCurrentUser();
-            entity.DeleteBy = int.Parse(id);
+            entity.DeleteBy = !string.IsNullOrEmpty(id) ? int.Parse(id) : null;
             entity.IsDeleted = true;
             _dbSet.Update(entity);
         }

@@ -26,6 +26,30 @@ namespace Project.SWP.Controllers
             var result = await _services.CreateUser(model);
             return Ok(result);
         }
+        [HttpGet]
+        public async Task<IActionResult> GetUserById([FromQuery] int id)
+        {
+            var result = await _services.GetUserById(id);
+            return Ok(result);
+        }
+        [HttpGet("GetUsers")]
+        public async Task<IActionResult> GetUsers()
+        {
+            var result = await _services.GetAllUser();
+            return Ok(result);
+        }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteUser([FromQuery] int id)
+        {
+            var result = await _services.DeleteUser(id);
+            return Ok(result);
+        }
+        [HttpPut]
+        public async Task<IActionResult> UpdateUser([FromBody] UserModel model, [FromQuery] int id)
+        {
+            var result = await _services.UpdateUser(model, id);
+            return Ok(result);
+        }
         //[HttpGet]
         //public async Task<IActionResult> GetUsers(int pageIndex = 0, int pageSize = 10)
         //{

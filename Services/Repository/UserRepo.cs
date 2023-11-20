@@ -20,7 +20,8 @@ namespace Services.Repository
         }
         public Task<User?> Login(string email, string password)
         {
-            return context.Users.FirstOrDefaultAsync(x => x.Email == email && x.Password == password);
+            var user = context.Users.FirstOrDefaultAsync(x => x.Email.Equals(email) && x.Password.Equals(password));
+            return user;
         }
         public async Task<int> AutoIncreamentId()
         {

@@ -3,8 +3,8 @@ using Services.Entity;
 
 namespace Services.Repository.Interface
 {
-    public interface ICourseRepo
+    public interface ICourseRepo : IGenericRepo<Course>
     {
-
+        Task<int> AutoIncreamentId();
     }
 }

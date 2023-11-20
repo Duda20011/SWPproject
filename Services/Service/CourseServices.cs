@@ -7,34 +7,85 @@ namespace Services.Service
 {
     public class CourseServices : ICourseServices
     {
-        public Task<ResponseModel<CourseResponse>> CreateCourse(CourseModel course)
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
+        public CourseServices(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
+        }
+        public async Task<Course> CreateCourse(CourseModel courseModel)
+        {
+            var course = new Course()
+            {
+                title = courseModel.Title,
+                CourseDescription = courseModel.CourseDescription,
+                CreationDate = DateTime.Now,
+                Price = courseModel.Price,
+                imageUrl = courseModel.imageUrl,
+                IsPulished = courseModel.isPublish,
+                IsDeleted = false
+            };
+            course.CategoryId = await _unitOfWork.courseRepo.AutoIncreamentId();
+            await _unitOfWork.courseRepo.CreateAsync(course);
+            var isSuccess = await _unitOfWork.SaveChangeAsync();
+            if (isSuccess > 0)
+            {
+                return course;
+            }
+            return null;
+        }
+        public async Task<bool> UpdateCourse(CourseModel courseModel, int id)
+        {
+            var course = await _unitOfWork.courseRepo.GetEntityByIdAsync(id);
+            if (course == null)
+            {
+                return false;
+            }
+            course.title = courseModel.Title;
+            course.CourseDescription = courseModel.CourseDescription;
+            course.Price = courseModel.Price;
+            course.imageUrl = courseModel.imageUrl;
+            course.IsPulished = courseModel.isPublish;
+            _unitOfWork.courseRepo.UpdateAsync(course);
+            var isSuccess = await _unitOfWork.SaveChangeAsync();
+            if (isSuccess > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public async Task<bool> DeleteCourse(int id)
+        {
+            Course course = await _unitOfWork.courseRepo.GetEntityByIdAsync(id);
+            if (course == null)
+            {
+                return false;
+            }
+            course.DeletionDate = DateTime.Now;
+            course.IsDeleted = true;
+            _unitOfWork.courseRepo.DeleteAsync(course);
+            int check = await _unitOfWork.SaveChangeAsync();
+            return check > 0 ? true : false;
+        }
+        public async Task<Course> GetCourseById(int id)
+        {
+            Course course = await _unitOfWork.courseRepo.GetEntityByIdAsync(id);
+            return course;
+        }
+        public async Task<List<Course>> GetCoursesAsync()
+        {
+            List<Course> courses = (await _unitOfWork.courseRepo.GetAllAsync()).ToList();
+            List<Course> result = new List<Course>();
+            foreach (var item in courses)
+            {
+                if (item.IsDeleted == false)
+                {
+                    result.Add(item);
+                }
+            }
+            return result;
         }
 
-        public Task<ResponseModel<Pagination<CourseModel>>> GetAllCourse()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ResponseModel<Pagination<CourseModel>>> GetCourseById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ResponseModel<Pagination<CourseModel>>> GetCourseByName(string coursename)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ResponseModel<string>> RemoveCourse(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ResponseModel<string>> UpdateCourse(int id, CourseModel courseModel)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
