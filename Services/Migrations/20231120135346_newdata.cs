@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Services.Migrations
 {
     /// <inheritdoc />
-    public partial class updatedata : Migration
+    public partial class newdata : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -180,9 +180,10 @@ namespace Services.Migrations
                 name: "UserCourse",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CourseId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    Id = table.Column<int>(type: "int", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
                     ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -193,7 +194,7 @@ namespace Services.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserCourse", x => new { x.UserId, x.CourseId });
+                    table.PrimaryKey("PK_UserCourse", x => x.Id);
                     table.ForeignKey(
                         name: "FK_UserCourse_Courses_CourseId",
                         column: x => x.CourseId,
@@ -274,6 +275,11 @@ namespace Services.Migrations
                 name: "IX_UserCourse_CourseId",
                 table: "UserCourse",
                 column: "CourseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserCourse_UserId",
+                table: "UserCourse",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_Email",

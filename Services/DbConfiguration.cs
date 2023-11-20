@@ -84,7 +84,8 @@ namespace Services
     {
         public void Configure(EntityTypeBuilder<UserCourse> builder)
         {
-            builder.HasKey(x => new { x.UserId, x.CourseId });
+            builder.HasKey(x => x.Id);
+
 
             builder.HasOne(s => s.User)
                    .WithMany(s => s.UserCourses)
