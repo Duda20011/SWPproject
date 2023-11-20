@@ -26,6 +26,10 @@ namespace Services.Service
                 return response;
             }
             response.Data = "Login successful.";
+            response.Role = new UserwithRole()
+            {
+                Role = user.Role.ToString(),
+            };
 
             return response;
         }

@@ -11,7 +11,6 @@ namespace Services.Model
         public decimal Price { get; set; }
         public string imageUrl { get; set; }
         public bool isPublish { get; set; }
-        public int CategoryId { get; set; }
     }
     public class CourseResponse
     {

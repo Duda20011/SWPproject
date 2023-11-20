@@ -29,7 +29,8 @@ namespace Services.Service
                 CreationDate = DateTime.Now,
                 IsDeleted = false,
                 Balance = req.balance,
-                BalanceHistory = req.balanceHistory
+                BalanceHistory = req.balanceHistory,
+                Status = (Status)PaymentStatus.Success
             };
             await _unitOfWork.walletRepo.CreateAsync(wallet);
             await _unitOfWork.SaveChangeAsync();

@@ -12,8 +12,8 @@ using Services;
 namespace Services.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20231120135346_newdata")]
-    partial class newdata
+    [Migration("20231120145357_1")]
+    partial class _1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

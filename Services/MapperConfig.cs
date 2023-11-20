@@ -14,7 +14,7 @@ namespace Services
             CreateMap<User, UserViewModel>().ReverseMap();
             CreateMap<Course, CourseModel>().ReverseMap();
             CreateMap<Course, CourseResponse>().ReverseMap();
-
+            CreateMap<User, UserwithRole>().ReverseMap();
         }
     }
 }

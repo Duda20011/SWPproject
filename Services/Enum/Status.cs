@@ -2,8 +2,8 @@
 {
     public enum Status
     {
-        Disactive,
-        Active
+        Active,
+        Disactive
     }
     public enum OrderStatus
     {
@@ -13,7 +13,7 @@
     }
     public enum PaymentStatus
     {
-        Success,
-        Fail
+        Fail,
+        Success
     }
 }
