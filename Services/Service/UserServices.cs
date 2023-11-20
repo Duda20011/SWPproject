@@ -119,5 +119,26 @@ namespace Services.Service
             int check = await _unitOfWork.SaveChangeAsync();
             return check > 0 ? true : false;
         }
+        public async Task<bool> CheckCourseUser(int userId, int courseId)
+        {
+            //check if user has bought course
+            var user = await _unitOfWork.userRepo.GetEntityByIdAsync(userId);
+            if (user == null)
+            {
+                return false;
+            }
+            var course = await _unitOfWork.courseRepo.GetEntityByIdAsync(courseId);
+            if (course == null)
+            {
+                return false;
+            }
+            UserCourse courseUser = await _unitOfWork.userCourseRepo.SingleOrDefaultAsync(
+                predicate: x => x.UserId == userId && x.CourseId == course.Id);
+            if (courseUser.CourseId == course.Id && courseUser.UserId == user.Id)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

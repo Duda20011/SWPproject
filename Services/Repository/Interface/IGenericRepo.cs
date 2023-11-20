@@ -14,5 +14,9 @@ namespace Services.Repository
         void DeleteAsync(T entity);
         Task<T> GetEntityByIdAsync(int id);
         Task<IEnumerable<T>> GetAllAsync();
+        Task<T> SingleOrDefaultAsync(
+            Expression<Func<T, bool>> predicate = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+            Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
     }
 }

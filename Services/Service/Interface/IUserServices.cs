@@ -15,6 +15,7 @@ namespace Services.Service.Interface
         Task<List<User>> GetAllUser();
         Task<bool> DeleteUser(int id);
         Task<bool> UpdateUser(UserModel req, int id);
+        Task<bool> CheckCourseUser(int userId, int courseId);
 
     }
 }
