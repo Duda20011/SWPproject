@@ -21,8 +21,7 @@ namespace Project.SWP
             services.AddDbContext<AppDBContext>(option => option.UseSqlServer(connectionString.SQLServerDB));
             #endregion
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddControllers().AddJsonOptions(opt =>
-            opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+            
             #region SwaggerConfig
             services.AddSwaggerGen(
                     c =>
@@ -39,29 +38,6 @@ namespace Project.SWP
                         });
                         var xmlFileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                         c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFileName));
-                        c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                        {
-                            Type = SecuritySchemeType.Http,
-                            In = ParameterLocation.Header,
-                            BearerFormat = "JWT",
-                            Scheme = "Bearer",
-                            Description = "Please input your token"
-                        });
-                        c.AddSecurityRequirement(new OpenApiSecurityRequirement
-                        {
-                            {
-                                new OpenApiSecurityScheme
-                                {
-                                    Reference=new OpenApiReference
-                                    {
-                                        Type=ReferenceType.SecurityScheme,
-                                        Id="Bearer"
-                                    }
-                                },
-                                new string[]{}
-                            }
-                        });
-
                     });
             #endregion
             return services;
