@@ -2,11 +2,10 @@
 
 namespace Services.Entity
 {
-    public class Payment
+    public class Payment : BaseEntity
     {
-        public string Id { get; set; }
         public string Name { get; set; }
-        public string CourseId { get; set; }
+        public int CourseId { get; set; }
         public Course Course { get; set; }
         public decimal Balance { get; set; }
         public PaymentStatus Status { get; set; }

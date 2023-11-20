@@ -14,10 +14,6 @@ namespace Services
         public DbSet<Chapter> Chapters { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Wallet> Wallets { get; set; }
-
-
-
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

@@ -2,8 +2,10 @@
 
 namespace Services.Repository
 {
-    public interface IUserRepo
+    public interface IUserRepo : IGenericRepo<User>
     {
-
+        Task<User?> Login(string email, string password);
+        Task<bool> ExistEmail(string email);
+        Task<int> AutoIncreamentId();
     }
 }

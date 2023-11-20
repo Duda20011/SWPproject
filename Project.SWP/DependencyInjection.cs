@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Project.SWP.Services;
 using Services;
 using Services.Service;
 using System;
@@ -14,11 +15,10 @@ namespace Project.SWP
         {
             #region AppSettings
             services.AddHttpContextAccessor();
+            services.AddScoped<IClaimsServices, ClaimsServices>();
             var connectionString = configuration.GetSection("ConnectionStrings").Get<ConnectionStrings>();
             services.AddSingleton(connectionString);
             services.AddDbContext<AppDBContext>(option => option.UseSqlServer(connectionString.SQLServerDB));
-            var jwtSection = configuration.GetSection("JWTSection").Get<JWTSection>();
-            services.AddSingleton(jwtSection);
             #endregion
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllers().AddJsonOptions(opt =>

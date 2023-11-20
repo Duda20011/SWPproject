@@ -2,9 +2,8 @@
 
 namespace Services.Entity
 {
-    public class User 
+    public class User : BaseEntity
     {
-        public string Id { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public string Name { get; set; }
@@ -13,7 +12,7 @@ namespace Services.Entity
         public Role Role { get; set; }
         public ICollection<Order> Orders { get; set; }
         public ICollection<UserCourse> UserCourses { get; set; }
-        public string WalletId { get; set; }
+        public int WalletId { get; set; }
         public Wallet Wallet { get; set; }
     }
 }

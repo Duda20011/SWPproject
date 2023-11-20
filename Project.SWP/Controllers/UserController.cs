@@ -26,23 +26,23 @@ namespace Project.SWP.Controllers
             var result = await _services.CreateUser(model);
             return Ok(result);
         }
-        [HttpGet]
-        public async Task<IActionResult> GetUsers(int pageIndex = 0, int pageSize = 10)
-        {
-            var result = await _services.GetUsers(pageIndex, pageSize);
-            return Ok(result);
-        }
-        [HttpPut]
-        public async Task<IActionResult> Update([FromQuery] int id, [FromBody] UserModel model)
-        {
-            var result = await _services.UpdateUser(id, model);
-            return Ok(result);
-        }
-        [HttpDelete]
-        public async Task<IActionResult> Delete([FromQuery] int id)
-        {
-            var result = await _services.RemoveUser(id);
-            return Ok(result);
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> GetUsers(int pageIndex = 0, int pageSize = 10)
+        //{
+        //    var result = await _services.GetUsers(pageIndex, pageSize);
+        //    return Ok(result);
+        //}
+        //[HttpPut]
+        //public async Task<IActionResult> Update([FromQuery] int id, [FromBody] UserModel model)
+        //{
+        //    var result = await _services.UpdateUser(id, model);
+        //    return Ok(result);
+        //}
+        //[HttpDelete]
+        //public async Task<IActionResult> Delete([FromQuery] int id)
+        //{
+        //    var result = await _services.RemoveUser(id);
+        //    return Ok(result);
+        //}
     }
 }

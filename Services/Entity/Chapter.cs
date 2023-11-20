@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace Services.Entity
 {
-    public class Chapter
+    public class Chapter : BaseEntity
     {
-        public string Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string videoUrl { get; set; }
         public Boolean isPulished { get; set; }
-        public string CourseId { get; set; }
+        public int CourseId { get; set; }
         public Course Course { get; set; }
 
     }

@@ -2,15 +2,14 @@
 
 namespace Services.Entity
 {
-    public class Order
+    public class Order : BaseEntity
     {
-        public string Id { get; set; }
         public DateTime OrderDate { get; set; }
         public decimal TotalPrice { get; set; }
         public OrderStatus OrderStatus { get; set; }
-        public string UserId { get; set; }
+        public int UserId { get; set; }
         public User User { get; set; }
-        public string PaymentId { get; set; }
+        public int PaymentId { get; set; }
         public Payment Payment { get; set; }
     }
 }

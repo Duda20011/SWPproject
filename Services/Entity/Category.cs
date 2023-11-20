@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Services.Entity
 {
-    public class Category
+    public class Category : BaseEntity
     {
-        public string Id { get; set; }
         public string Name { get; set; }
         public ICollection<Course> Courses { get; set; }
     }
