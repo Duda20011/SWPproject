@@ -21,7 +21,8 @@ namespace Project.SWP
             services.AddDbContext<AppDBContext>(option => option.UseSqlServer(connectionString.SQLServerDB));
             #endregion
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            
+            services.AddControllers().AddJsonOptions(opt =>
+            opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
             #region SwaggerConfig
             services.AddSwaggerGen(
                     c =>
