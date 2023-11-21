@@ -8,5 +8,6 @@ namespace Services.Commons
         public string? Errors { get; set; }
         public bool HasError => Errors?.Length > 0;
         public UserwithRole Role { get; set; }
+        public UserView UserView { get; set; }
     }
 }

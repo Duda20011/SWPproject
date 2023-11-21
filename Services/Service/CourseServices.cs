@@ -18,15 +18,17 @@ namespace Services.Service
         {
             var course = new Course()
             {
+                Id = courseModel.Id,
                 title = courseModel.Title,
                 CourseDescription = courseModel.CourseDescription,
                 CreationDate = DateTime.Now,
                 Price = courseModel.Price,
                 imageUrl = courseModel.imageUrl,
                 IsPulished = courseModel.isPublish,
-                IsDeleted = false
+                IsDeleted = false,
+                CategoryId = courseModel.CategoryId
             };
-            course.CategoryId = await _unitOfWork.courseRepo.AutoIncreamentId();
+            //course.CategoryId = await _unitOfWork.courseRepo.AutoIncreamentId();
             await _unitOfWork.courseRepo.CreateAsync(course);
             var isSuccess = await _unitOfWork.SaveChangeAsync();
             if (isSuccess > 0)
@@ -42,6 +44,7 @@ namespace Services.Service
             {
                 return false;
             }
+            course.Id = courseModel.Id;
             course.title = courseModel.Title;
             course.CourseDescription = courseModel.CourseDescription;
             course.Price = courseModel.Price;

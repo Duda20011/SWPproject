@@ -24,6 +24,7 @@ namespace Services.Service
         {
             Chapter chapter = new Chapter()
             {
+                Id = req.Id,
                 Title = req.Title,
                 CreationDate = DateTime.Now,
                 IsDeleted = false,

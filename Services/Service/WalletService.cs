@@ -25,6 +25,7 @@ namespace Services.Service
         {
             Wallet wallet = new Wallet()
             {
+                Id = req.Id,
                 Name = req.name,
                 CreationDate = DateTime.Now,
                 IsDeleted = false,

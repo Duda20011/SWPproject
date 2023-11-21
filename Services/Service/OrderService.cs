@@ -41,6 +41,7 @@ namespace Services.Service
             }
             Order order = new Order()
             {
+                Id = req.Id,
                 OrderDate = DateTime.Now,
                 TotalPrice = req.TotalPrice,
                 UserId = req.UserId.ToString(),
@@ -90,6 +91,7 @@ namespace Services.Service
             //create Payment
             Payment newPaymentOrder = new Payment()
             {
+                Id = Guid.NewGuid().ToString(),
                 Name = $"Thanh toán Course {course.title}",
                 Balance = req.TotalPrice,
                 CourseId = req.CourseId,
@@ -116,6 +118,7 @@ namespace Services.Service
             }
             UserCourse userCourse = new UserCourse()
             {
+                Id = Guid.NewGuid().ToString(),
                 UserId = req.UserId,
                 CourseId = req.CourseId,
                 CreationDate = DateTime.Now,
