@@ -24,7 +24,7 @@ namespace Services.Service
             List<Payment> paymentList = (await _unitOfWork.paymentRepo.GetAllAsync()).ToList();
             return paymentList;
         }
-        public async Task<Payment> GetPaymentById(int id)
+        public async Task<Payment> GetPaymentById(string id)
         {
             Payment payment = await _unitOfWork.paymentRepo.GetEntityByIdAsync(id);
             return payment;

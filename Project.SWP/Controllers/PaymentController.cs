@@ -22,7 +22,7 @@ namespace Project.SWP.Controllers
             return Ok(paymentList);
         }
         [HttpGet]
-        public async Task<IActionResult> GetPaymentById([FromQuery]int id)
+        public async Task<IActionResult> GetPaymentById([FromQuery]string id)
         {
             Payment payment = await _service.GetPaymentById(id);
             return Ok(payment);

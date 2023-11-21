@@ -71,7 +71,7 @@ namespace Services.Service
             }
             return new ResponseModel<string> { Errors = "Fail to create user." };
         }
-        public async Task<User> GetUserById(int id)
+        public async Task<User> GetUserById(string id)
         {
             var user = await _unitOfWork.userRepo.GetEntityByIdAsync(id);
             return user;
@@ -89,7 +89,7 @@ namespace Services.Service
             }
             return result;
         } 
-        public async Task<bool> DeleteUser(int id)
+        public async Task<bool> DeleteUser(string id)
         {
             User user = await _unitOfWork.userRepo.GetEntityByIdAsync(id);
             if (user == null)
@@ -102,7 +102,7 @@ namespace Services.Service
             int check = await _unitOfWork.SaveChangeAsync();
             return check > 0 ? true : false;
         }
-        public async Task<bool> UpdateUser(UserModel req, int id)
+        public async Task<bool> UpdateUser(UserModel req, string id)
         {
             User user = await _unitOfWork.userRepo.GetEntityByIdAsync(id);
             if (user == null)
@@ -119,7 +119,7 @@ namespace Services.Service
             int check = await _unitOfWork.SaveChangeAsync();
             return check > 0 ? true : false;
         }
-        public async Task<bool> CheckCourseUser(int userId, int courseId)
+        public async Task<bool> CheckCourseUser(string userId, string courseId)
         {
             //check if user has bought course
             var user = await _unitOfWork.userRepo.GetEntityByIdAsync(userId);

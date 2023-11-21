@@ -35,7 +35,7 @@ namespace Services.Service
             }
             return null;
         }
-        public async Task<bool> UpdateCourse(CourseModel courseModel, int id)
+        public async Task<bool> UpdateCourse(CourseModel courseModel, string id)
         {
             var course = await _unitOfWork.courseRepo.GetEntityByIdAsync(id);
             if (course == null)
@@ -55,7 +55,7 @@ namespace Services.Service
             }
             return false;
         }
-        public async Task<bool> DeleteCourse(int id)
+        public async Task<bool> DeleteCourse(string id)
         {
             Course course = await _unitOfWork.courseRepo.GetEntityByIdAsync(id);
             if (course == null)
@@ -68,7 +68,7 @@ namespace Services.Service
             int check = await _unitOfWork.SaveChangeAsync();
             return check > 0 ? true : false;
         }
-        public async Task<Course> GetCourseById(int id)
+        public async Task<Course> GetCourseById(string id)
         {
             Course course = await _unitOfWork.courseRepo.GetEntityByIdAsync(id);
             return course;

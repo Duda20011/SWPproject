@@ -16,7 +16,7 @@ namespace Project.SWP.Controllers
             _service = service;
         }
         [HttpGet]
-        public async Task<IActionResult> GetWalletById([FromQuery] int id)
+        public async Task<IActionResult> GetWalletById([FromQuery] string id)
         {
             var result = await _service.GetWalletById(id);
             return Ok(result);
@@ -34,13 +34,13 @@ namespace Project.SWP.Controllers
             return Ok(result);
         }
         [HttpPut]
-        public async Task<IActionResult> UpdateWallets([FromBody] WalletModel model, [FromQuery] int id)
+        public async Task<IActionResult> UpdateWallets([FromBody] WalletModel model, [FromQuery] string id)
         {
             var result = await _service.UpdateWallets(model, id);
             return Ok(result);
         }
         [HttpDelete]
-        public async Task<IActionResult> DeleteWallets([FromQuery] int id)
+        public async Task<IActionResult> DeleteWallets([FromQuery] string id)
         {
             var result = await _service.DeleteWallets(id);
             return Ok(result);

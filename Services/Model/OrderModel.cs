@@ -8,8 +8,8 @@ namespace Services.Model
 {
     public class OrderModel
     {
-        public int CourseId { get; set; }
+        public string CourseId { get; set; }
         public decimal TotalPrice { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
     }
 }

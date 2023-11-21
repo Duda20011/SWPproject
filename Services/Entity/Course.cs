@@ -9,7 +9,7 @@ namespace Services.Entity
         public decimal Price { get; set; }
         public string imageUrl { get; set; }
         public Boolean IsPulished { get; set; }
-        public int CategoryId { get; set; }
+        public string CategoryId { get; set; }
         public Category Category { get; set; }
         public ICollection<Chapter>? Chapters { get; set; }
         public ICollection<UserCourse> UserCourses { get; set; }

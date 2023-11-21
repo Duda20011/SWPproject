@@ -12,7 +12,7 @@ namespace Services.Entity
         public Role Role { get; set; }
         public ICollection<Order> Orders { get; set; }
         public ICollection<UserCourse> UserCourses { get; set; }
-        public int WalletId { get; set; }
+        public string WalletId { get; set; }
         public Wallet Wallet { get; set; }
     }
 }

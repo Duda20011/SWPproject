@@ -43,7 +43,7 @@ namespace Services.Service
             {
                 OrderDate = DateTime.Now,
                 TotalPrice = req.TotalPrice,
-                UserId = req.UserId,
+                UserId = req.UserId.ToString(),
                 OrderStatus = Enum.OrderStatus.Success,
                 PaymentId = checkPayment.Id,
                 CreationDate = DateTime.Now,
@@ -143,12 +143,12 @@ namespace Services.Service
             List<Order> listOrder = (await _unitOfWork.orderRepo.GetAllAsync()).ToList();
             return listOrder;
         }
-        public async Task<Order> GetOrderById(int id)
+        public async Task<Order> GetOrderById(string id)
         {
             Order order = await _unitOfWork.orderRepo.GetEntityByIdAsync(id);
             return order;
         }
-        public async Task<Order> UpdateOrder(OrderModel req, int id)
+        public async Task<Order> UpdateOrder(OrderModel req, string id)
         {
             Order order = await _unitOfWork.orderRepo.GetEntityByIdAsync(id);
             if (order == null)

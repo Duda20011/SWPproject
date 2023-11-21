@@ -12,7 +12,7 @@ namespace Services.Repository
         Task CreateRangeAsync(IEnumerable<T> entities);
         void UpdateAsync(T entity);
         void DeleteAsync(T entity);
-        Task<T> GetEntityByIdAsync(int id);
+        Task<T> GetEntityByIdAsync(string id);
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> SingleOrDefaultAsync(
             Expression<Func<T, bool>> predicate = null,

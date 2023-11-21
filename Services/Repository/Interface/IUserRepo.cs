@@ -6,6 +6,6 @@ namespace Services.Repository
     {
         Task<User?> Login(string email, string password);
         Task<bool> ExistEmail(string email);
-        Task<int> AutoIncreamentId();
+        Task<string> AutoIncreamentId();
     }
 }

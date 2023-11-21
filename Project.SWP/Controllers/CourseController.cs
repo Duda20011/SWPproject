@@ -30,19 +30,19 @@ namespace Project.SWP.Controllers
             return Ok(result);
         }
         [HttpGet]
-        public async Task<IActionResult> GetCourseById([FromQuery]int id)
+        public async Task<IActionResult> GetCourseById([FromQuery]string id)
         {
             var result = await _courseServices.GetCourseById(id);
             return Ok(result);
         }
         [HttpPut]
-        public async Task<IActionResult> Update( [FromBody] CourseModel courseModel,[FromQuery] int id)
+        public async Task<IActionResult> Update( [FromBody] CourseModel courseModel,[FromQuery] string id)
         {
             var result = await _courseServices.UpdateCourse(courseModel,id);
             return Ok(result);
         }
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromQuery] int id)
+        public async Task<IActionResult> Delete([FromQuery] string id)
         {
             var result = await _courseServices.DeleteCourse(id);
             return Ok(result);

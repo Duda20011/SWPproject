@@ -27,7 +27,7 @@ namespace Project.SWP.Controllers
             return Ok(result);
         }
         [HttpGet]
-        public async Task<IActionResult> GetUserById([FromQuery] int id)
+        public async Task<IActionResult> GetUserById([FromQuery] string id)
         {
             var result = await _services.GetUserById(id);
             return Ok(result);
@@ -39,19 +39,19 @@ namespace Project.SWP.Controllers
             return Ok(result);
         }
         [HttpDelete]
-        public async Task<IActionResult> DeleteUser([FromQuery] int id)
+        public async Task<IActionResult> DeleteUser([FromQuery] string id)
         {
             var result = await _services.DeleteUser(id);
             return Ok(result);
         }
         [HttpPut]
-        public async Task<IActionResult> UpdateUser([FromBody] UserModel model, [FromQuery] int id)
+        public async Task<IActionResult> UpdateUser([FromBody] UserModel model, [FromQuery] string id)
         {
             var result = await _services.UpdateUser(model, id);
             return Ok(result);
         }
         [HttpGet]
-        public async Task<IActionResult> CheckUserBoughtCourse([FromQuery] int userId, [FromQuery] int courseId)
+        public async Task<IActionResult> CheckUserBoughtCourse([FromQuery] string userId, [FromQuery] string courseId)
         {
             var result = await _services.CheckCourseUser(userId, courseId);
             return Ok(result);

@@ -13,6 +13,6 @@ namespace Services.Model
         public string Description { get; set; }
         public string videoUrl { get; set; }
         public Boolean isPulished { get; set; }
-        public int CourseId { get; set; }
+        public string CourseId { get; set; }
     }
 }

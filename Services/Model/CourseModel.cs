@@ -14,11 +14,11 @@ namespace Services.Model
     }
     public class CourseResponse
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string CourseName { get; set; }
         public string CourseDescription { get; set; }
         public decimal Price { get; set; }
         public string Status { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
     }
 }

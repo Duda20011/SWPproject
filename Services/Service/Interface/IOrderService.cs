@@ -11,7 +11,7 @@ namespace Services.Service.Interface
     public interface IOrderService
     {
         Task<Order> CreateOrder(OrderModel req);
-        Task<Order> GetOrderById(int id);
+        Task<Order> GetOrderById(string id);
         Task<List<Order>> GetAllOrder();
     }
 }

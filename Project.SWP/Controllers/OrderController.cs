@@ -28,7 +28,7 @@ namespace Project.SWP.Controllers
             return Ok(result);
         }
         [HttpGet]
-        public async Task<IActionResult> GetOrderById([FromQuery]int id)
+        public async Task<IActionResult> GetOrderById([FromQuery]string id)
         {
             var result = await _service.GetOrderById(id);
             return Ok(result);

@@ -28,19 +28,19 @@ namespace Project.SWP.Controllers
             return Ok(result);
         }
         [HttpGet]
-        public async Task<IActionResult> GetChapterById([FromQuery] int id)
+        public async Task<IActionResult> GetChapterById([FromQuery] string id)
         {
             var result = await _chapterService.GetChapterById(id);
             return Ok(result);
         }
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] ChapterModel chapterModel, [FromQuery] int id)
+        public async Task<IActionResult> Update([FromBody] ChapterModel chapterModel, [FromQuery] string id)
         {
             var result = await _chapterService.UpdateChapter(chapterModel, id);
             return Ok(result);
         }
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromQuery] int id)
+        public async Task<IActionResult> Delete([FromQuery] string id)
         {
             var result = await _chapterService.DeleteChapter(id);
             return Ok(result);

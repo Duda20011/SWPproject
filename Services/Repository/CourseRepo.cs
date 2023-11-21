@@ -15,7 +15,7 @@ namespace Services.Repository
         {
             this.context = context;
         }
-        public async Task<int> AutoIncreamentId()
+        public async Task<string> AutoIncreamentId()
         {
             var result = await context.Categories.MaxAsync(x => x.Id);
             var maxCategorytId = await context.Wallets.MaxAsync(x => x.Id);

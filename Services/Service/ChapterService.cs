@@ -36,7 +36,7 @@ namespace Services.Service
             await _unitOfWork.SaveChangeAsync();
             return chapter;
         }
-        public async Task<bool> UpdateChapter(ChapterModel req, int id)
+        public async Task<bool> UpdateChapter(ChapterModel req, string id)
         {
             Chapter chapter = await _unitOfWork.chapterRepo.GetEntityByIdAsync(id);
             if (chapter == null)
@@ -52,7 +52,7 @@ namespace Services.Service
             int check = await _unitOfWork.SaveChangeAsync();
             return check > 0 ? true : false;
         }
-        public async Task<bool> DeleteChapter(int id)
+        public async Task<bool> DeleteChapter(string id)
         {
             Chapter chapter = await _unitOfWork.chapterRepo.GetEntityByIdAsync(id);
             if (chapter == null)
@@ -64,7 +64,7 @@ namespace Services.Service
             int check = await _unitOfWork.SaveChangeAsync();
             return check > 0 ? true : false;
         }
-        public async Task<Chapter> GetChapterById(int id)
+        public async Task<Chapter> GetChapterById(string id)
         {
             Chapter chapter = await _unitOfWork.chapterRepo.GetEntityByIdAsync(id);
             return chapter;

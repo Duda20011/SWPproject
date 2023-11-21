@@ -11,9 +11,9 @@ namespace Services.Service.Interface
     public interface IWalletService
     {
         Task<Wallet> CreateWallets(WalletModel req);
-        Task<bool> UpdateWallets(WalletModel req, int id);
-        Task<bool> DeleteWallets(int id);
-        Task<Wallet> GetWalletById(int id);
+        Task<bool> UpdateWallets(WalletModel req, string id);
+        Task<bool> DeleteWallets(string id);
+        Task<Wallet> GetWalletById(string id);
         Task<List<Wallet>> GetWalletsAsync();
 
     }

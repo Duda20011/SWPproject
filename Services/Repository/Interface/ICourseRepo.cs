@@ -5,6 +5,6 @@ namespace Services.Repository.Interface
 {
     public interface ICourseRepo : IGenericRepo<Course>
     {
-        Task<int> AutoIncreamentId();
+        Task<string> AutoIncreamentId();
     }
 }

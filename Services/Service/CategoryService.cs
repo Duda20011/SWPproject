@@ -25,6 +25,7 @@ namespace Services.Service
         {
             Category category = new Category()
             {
+                Id = req.Id,
                 Name = req.Name,
                 CreationDate = DateTime.Now,
                 IsDeleted = false,
@@ -33,7 +34,7 @@ namespace Services.Service
             await _unitOfWork.SaveChangeAsync();
             return category;
         }
-        public async Task<bool> UpdateCategory(CategoryModel req, int id)
+        public async Task<bool> UpdateCategory(CategoryModel req, string id)
         {
             Category category = await _unitOfWork.categoryRepo.GetEntityByIdAsync(id);
             if (category == null)
@@ -46,7 +47,7 @@ namespace Services.Service
             int check = await _unitOfWork.SaveChangeAsync();
             return check > 0? true: false;
         }
-        public async Task<bool> DeleteCategory(int id)
+        public async Task<bool> DeleteCategory(string id)
         {
             Category category = await _unitOfWork.categoryRepo.GetEntityByIdAsync(id);
             if (category == null)
@@ -59,7 +60,7 @@ namespace Services.Service
             int check = await _unitOfWork.SaveChangeAsync();
             return check > 0 ? true : false;
         }
-        public async Task<Category> GetCategoryById(int id)
+        public async Task<Category> GetCategoryById(string id)
         {
             Category category = await _unitOfWork.categoryRepo.GetEntityByIdAsync(id);
             return category;

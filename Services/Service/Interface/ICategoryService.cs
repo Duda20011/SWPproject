@@ -11,9 +11,9 @@ namespace Services.Service.Interface
     public interface ICategoryService
     {
         Task<Category> CreateCategory(CategoryModel req);
-        Task<bool> UpdateCategory(CategoryModel req, int id);
-        Task<bool> DeleteCategory(int id);
-        Task<Category> GetCategoryById(int id);
+        Task<bool> UpdateCategory(CategoryModel req, string id);
+        Task<bool> DeleteCategory(string id);
+        Task<Category> GetCategoryById(string id);
         Task<List<Category>> GetCategoriesAsync();
     }
 }

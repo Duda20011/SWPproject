@@ -23,7 +23,7 @@ namespace Services.Repository
             var user = context.Users.FirstOrDefaultAsync(x => x.Email.Equals(email) && x.Password.Equals(password));
             return user;
         }
-        public async Task<int> AutoIncreamentId()
+        public async Task<string> AutoIncreamentId()
         {
             var result = await context.Users.MaxAsync(x => x.WalletId) + 1;
             var maxWalletId = await context.Wallets.MaxAsync(x => x.Id);

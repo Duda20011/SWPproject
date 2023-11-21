@@ -11,9 +11,9 @@ namespace Services.Service.Interface
     public interface IChapterService
     {
         Task<Chapter> CreateChapter(ChapterModel req);
-        Task<bool> UpdateChapter(ChapterModel req, int id);
-        Task<bool> DeleteChapter(int id);
-        Task<Chapter> GetChapterById(int id);
+        Task<bool> UpdateChapter(ChapterModel req, string id);
+        Task<bool> DeleteChapter(string id);
+        Task<Chapter> GetChapterById(string id);
         Task<List<Chapter>> GetChaptersAsync();
     }
 }

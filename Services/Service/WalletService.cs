@@ -36,7 +36,7 @@ namespace Services.Service
             await _unitOfWork.SaveChangeAsync();
             return wallet;
         }
-        public async Task<bool> UpdateWallets(WalletModel req, int id)
+        public async Task<bool> UpdateWallets(WalletModel req, string id)
         {
             Wallet wallet = await _unitOfWork.walletRepo.GetEntityByIdAsync(id);
             if (wallet == null)
@@ -51,7 +51,7 @@ namespace Services.Service
             int check = await _unitOfWork.SaveChangeAsync();
             return check > 0 ? true : false;
         }
-        public async Task<bool> DeleteWallets(int id)
+        public async Task<bool> DeleteWallets(string id)
         {
             Wallet wallet = await _unitOfWork.walletRepo.GetEntityByIdAsync(id);
             if (wallet == null)
@@ -64,7 +64,7 @@ namespace Services.Service
             int check = await _unitOfWork.SaveChangeAsync();
             return check > 0 ? true : false;
         }
-        public async Task<Wallet> GetWalletById(int id)
+        public async Task<Wallet> GetWalletById(string id)
         {
             Wallet wallet = await _unitOfWork.walletRepo.GetEntityByIdAsync(id);
             return wallet;

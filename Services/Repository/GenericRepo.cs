@@ -67,6 +67,6 @@ namespace Services.Repository
             return await query.AsNoTracking().FirstOrDefaultAsync();
         }
         public async Task<IEnumerable<T>> GetAllAsync() => await _dbSet.AsNoTracking().ToListAsync();
-        public async Task<T> GetEntityByIdAsync(int id) => await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
+        public async Task<T> GetEntityByIdAsync(string id) => await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
     }
 }

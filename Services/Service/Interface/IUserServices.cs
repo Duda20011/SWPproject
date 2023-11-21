@@ -8,14 +8,11 @@ namespace Services.Service.Interface
     {
         Task<ResponseModel<string>> Login(LoginModel loginModel);
         Task<ResponseModel<string>> CreateUser(UserModel loginModel);
-        //Task<ResponseModel<Pagination<UserModel>>> GetUsers(int pageIndex = 0, int pageSize = 10);
-        //Task<ResponseModel<string>> UpdateUser(int id, UserModel loginModel);
-        //Task<ResponseModel<string>> RemoveUser(int id);
-        Task<User> GetUserById(int id);
+        Task<User> GetUserById(string id);
         Task<List<User>> GetAllUser();
-        Task<bool> DeleteUser(int id);
-        Task<bool> UpdateUser(UserModel req, int id);
-        Task<bool> CheckCourseUser(int userId, int courseId);
+        Task<bool> DeleteUser(string id);
+        Task<bool> UpdateUser(UserModel req, string id);
+        Task<bool> CheckCourseUser(string userId, string courseId);
 
     }
 }

@@ -10,6 +10,6 @@ namespace Services.Service.Interface
     public interface IPaymentService
     {
         Task<List<Payment>> GetAllPayment();
-        Task<Payment> GetPaymentById(int id);
+        Task<Payment> GetPaymentById(string id);
     }
 }
