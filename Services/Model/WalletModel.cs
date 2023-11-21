@@ -8,6 +8,7 @@ namespace Services.Model
 {
     public class WalletModel
     {
+        public string Id { get; set; }
         public string name { get; set; }
         public int balance { get; set; }
         public int balanceHistory { get; set; }

@@ -2,11 +2,6 @@
 using Services.Entity;
 using Services.Model;
 using Services.Service.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.Service
 {
