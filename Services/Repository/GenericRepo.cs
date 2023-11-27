@@ -68,5 +68,17 @@ namespace Services.Repository
         }
         public async Task<IEnumerable<T>> GetAllAsync() => await _dbSet.AsNoTracking().ToListAsync();
         public async Task<T> GetEntityByIdAsync(string id) => await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
+        public virtual async Task<ICollection<T>> GetListAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
+        {
+            IQueryable<T> query = _dbSet;
+
+            if (include != null) query = include(query);
+
+            if (predicate != null) query = query.Where(predicate);
+
+            if (orderBy != null) return await orderBy(query).AsNoTracking().ToListAsync();
+
+            return await query.AsNoTracking().ToListAsync();
+        }
     }
 }

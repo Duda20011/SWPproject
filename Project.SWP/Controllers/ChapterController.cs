@@ -45,5 +45,17 @@ namespace Project.SWP.Controllers
             var result = await _chapterService.DeleteChapter(id);
             return Ok(result);
         }
+        [HttpPut("UpdateChapterStatus")]
+        public async Task<IActionResult> UpdateChapterStatus([FromQuery] string id)
+        {
+            var result = await _chapterService.UpdateChapterStatus(id);
+            return Ok(result);
+        }
+        [HttpPut("UpdateUnPublishChapter")]
+        public async Task<IActionResult> UpdateUnPublishChapter([FromQuery] string id)
+        {
+            var result = await _chapterService.UpdateUnPublishChapter(id);
+            return Ok(result);
+        }
     }
 }

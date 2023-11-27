@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.IdentityModel.Tokens;
 using Services.Entity;
 using Services.Model;
 using Services.Service.Interface;
@@ -24,7 +25,7 @@ namespace Services.Service
         {
             Chapter chapter = new Chapter()
             {
-                Id = req.Id,
+                Id = (req.Id.IsNullOrEmpty()) ? Guid.NewGuid().ToString() : req.Id,
                 Title = req.Title,
                 CreationDate = DateTime.Now,
                 IsDeleted = false,
@@ -53,6 +54,31 @@ namespace Services.Service
             int check = await _unitOfWork.SaveChangeAsync();
             return check > 0 ? true : false;
         }
+        public async Task<bool> UpdateChapterStatus(string id)
+        {
+            Chapter chapter = await _unitOfWork.chapterRepo.GetEntityByIdAsync(id);
+            if (chapter == null)
+            {
+                return false;
+            }
+            chapter.isPulished = true;
+            _unitOfWork.chapterRepo.UpdateAsync(chapter);
+            int check = await _unitOfWork.SaveChangeAsync();
+            return check > 0 ? true : false;
+        }
+        public async Task<bool> UpdateUnPublishChapter(string id)
+        {
+            Chapter chapter = await _unitOfWork.chapterRepo.GetEntityByIdAsync(id);
+            if (chapter == null)
+            {
+                return false;
+            }
+            chapter.isPulished = false;
+            _unitOfWork.chapterRepo.UpdateAsync(chapter);
+            int check = await _unitOfWork.SaveChangeAsync();
+            return check > 0 ? true : false;
+        }
+
         public async Task<bool> DeleteChapter(string id)
         {
             Chapter chapter = await _unitOfWork.chapterRepo.GetEntityByIdAsync(id);

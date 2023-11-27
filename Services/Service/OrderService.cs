@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.IdentityModel.Tokens;
 using Services.Entity;
 using Services.Model;
 using Services.Service.Interface;
@@ -41,7 +42,7 @@ namespace Services.Service
             }
             Order order = new Order()
             {
-                Id = req.Id,
+                Id = (req.Id.IsNullOrEmpty()) ? Guid.NewGuid().ToString() : req.Id,
                 OrderDate = DateTime.Now,
                 TotalPrice = req.TotalPrice,
                 UserId = req.UserId.ToString(),
@@ -55,11 +56,24 @@ namespace Services.Service
             var checkUserCourse = await AddUserCourse(req);
             if (checkUserCourse)
             {
+                await UpdateChapter(req);
                 await _unitOfWork.orderRepo.CreateAsync(order);
                 await _unitOfWork.SaveChangeAsync();
                 return order;
             }
             return null;
+        }
+        private async Task<bool> UpdateChapter(OrderModel req)
+        {
+            Chapter chapter = await _unitOfWork.chapterRepo.SingleOrDefaultAsync(x => x.CourseId == req.CourseId);
+            if(chapter == null)
+            {
+                return false;
+            }
+            chapter.isFree = true;
+            _unitOfWork.chapterRepo.UpdateAsync(chapter);
+            await _unitOfWork.SaveChangeAsync();
+            return true;
         }
         private async Task<Payment> CreatePaymentOrder(OrderModel req)
         {

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.IdentityModel.Tokens;
 using Services.Commons;
 using Services.Entity;
 using Services.Enum;
@@ -69,7 +70,7 @@ namespace Services.Service
             {
                 //var user = _mapper.Map<User>(loginModel);
                 User user = new User() {
-                    Id = loginModel.Id,
+                    Id = (loginModel.Id.IsNullOrEmpty())? Guid.NewGuid().ToString(): loginModel.Id, 
                     Address = loginModel.Address,
                     Email = loginModel.Email,
                     CreationDate = DateTime.Now,

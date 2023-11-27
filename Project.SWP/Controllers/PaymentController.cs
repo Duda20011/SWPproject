@@ -27,5 +27,11 @@ namespace Project.SWP.Controllers
             Payment payment = await _service.GetPaymentById(id);
             return Ok(payment);
         }
+        [HttpGet("TotalSale")]
+        public async Task<IActionResult> TotalSale()
+        {
+            var total = await _service.TotalSale();
+            return Ok(total);
+        }
     }
 }
